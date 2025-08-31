@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://1qvw6fsyts0b"]
+
+[ext_resource type="Texture2D" uid="uid://c3fdcjc3fdc4g" path="res://entities/ghosts/assets/blueGhost.png" id="1_t8qsd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5g3i3"]
+atlas = ExtResource("1_t8qsd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pwui"]
+atlas = ExtResource("1_t8qsd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdo8o"]
+atlas = ExtResource("1_t8qsd")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s61ux"]
+atlas = ExtResource("1_t8qsd")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0tna"]
+atlas = ExtResource("1_t8qsd")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ix4p"]
+atlas = ExtResource("1_t8qsd")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clc3h"]
+atlas = ExtResource("1_t8qsd")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1na3"]
+atlas = ExtResource("1_t8qsd")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_elai6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5g3i3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pwui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdo8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s61ux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0tna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ix4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clc3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1na3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Inky" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_elai6")
