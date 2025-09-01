@@ -18,20 +18,17 @@ var next_direction: Vector2i
 
 func _process(_delta: float) -> void:
 	var direction: Vector2i = direction_component.direction
-
-	var direction_changed: bool = try_move(direction)
-	if direction_changed:
-		next_direction = Vector2i.ZERO
-		return
-
 	if direction != Vector2i.ZERO and direction != current_direction:
 		next_direction = direction
 
 	var moved_next_direction: bool = try_move(next_direction)
-	next_direction = next_direction if not moved_next_direction else Vector2i.ZERO
+	if moved_next_direction:
+		# Input/queue has been handled, no need to continue
+		next_direction = Vector2i.ZERO
+		return
 
-	if not moved_next_direction:
-		var move_continued = try_move(current_direction)
+	# Either there was no input/queued move, or we weren't able to act on it. Try to continue in the current direction
+	try_move(current_direction)
 
 func try_move(direction: Vector2i) -> bool:
 	var target_tile = current_tile + direction
