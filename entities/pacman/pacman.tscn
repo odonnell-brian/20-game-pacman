@@ -1,6 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://c17f65j7n8m0n"]
+[gd_scene load_steps=15 format=3 uid="uid://c17f65j7n8m0n"]
 
+[ext_resource type="Script" uid="uid://dxai50qtl8etr" path="res://entities/pacman/pacman.gd" id="1_5am7l"]
 [ext_resource type="Texture2D" uid="uid://bu2rqfyrqk7lt" path="res://entities/pacman/assets/PacMan.png" id="1_osiaf"]
+[ext_resource type="PackedScene" uid="uid://bdj3y3ob2xjk1" path="res://common/components/movement_component.tscn" id="3_o0vqk"]
+[ext_resource type="PackedScene" uid="uid://biacfgsbjr843" path="res://common/components/input_movement_direction_component.tscn" id="4_hit3b"]
+[ext_resource type="PackedScene" uid="uid://dgin6cgtoea7i" path="res://common/components/sprite_orientation_component.tscn" id="5_hit3b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5am7l"]
 atlas = ExtResource("1_osiaf")
@@ -66,9 +70,21 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Pacman" type="Node2D"]
+[node name="Pacman" type="Node2D" node_paths=PackedStringArray("movement_component")]
+script = ExtResource("1_5am7l")
+movement_component = NodePath("MovementComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_enqll")
 autoplay = "default"
-frame_progress = 0.125657
+frame_progress = 0.282733
+
+[node name="InputMovementDirectionComponent" parent="." instance=ExtResource("4_hit3b")]
+
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("direction_component") instance=ExtResource("3_o0vqk")]
+direction_component = NodePath("../InputMovementDirectionComponent")
+time_to_move = 0.2
+
+[node name="SpriteOrientationComponent" parent="." node_paths=PackedStringArray("sprite", "movement_component") instance=ExtResource("5_hit3b")]
+sprite = NodePath("../AnimatedSprite2D")
+movement_component = NodePath("../MovementComponent")

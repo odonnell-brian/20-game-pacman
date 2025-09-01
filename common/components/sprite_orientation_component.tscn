@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgin6cgtoea7i"]
+
+[ext_resource type="Script" uid="uid://vc0wvqbnapun" path="res://common/components/sprite_orientation_component.gd" id="1_dqpul"]
+
+[node name="SpriteOrientationComponent" type="Node2D"]
+script = ExtResource("1_dqpul")

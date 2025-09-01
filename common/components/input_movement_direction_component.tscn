@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://biacfgsbjr843"]
+
+[ext_resource type="Script" uid="uid://1cftm4bradp" path="res://common/components/input_movement_direction_component.gd" id="1_r1anm"]
+
+[node name="InputMovementDirectionComponent" type="Node2D"]
+script = ExtResource("1_r1anm")
