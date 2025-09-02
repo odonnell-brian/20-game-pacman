@@ -5,9 +5,16 @@ const TILE_SIZE := Vector2i(8, 8)
 const TOP_LEFT_GLOBAL_POSITION := Vector2(208, 36)
 const WALL_CUSTOM_DATA_KEY: String = "wall"
 
+const DIRECTION_TO_CELL_NEIGHBOR: Dictionary[Vector2i, TileSet.CellNeighbor] = {
+	Vector2i.UP: TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_SIDE,
+	Vector2i.LEFT: TileSet.CellNeighbor.CELL_NEIGHBOR_LEFT_SIDE,
+	Vector2i.DOWN: TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_SIDE,
+	Vector2i.RIGHT: TileSet.CellNeighbor.CELL_NEIGHBOR_RIGHT_SIDE,
+}
+
 @export_category("Settings")
 @export var maze_layer: TileMapLayer
-@export var path_layer: TileMapLayer
+@export var custom_adjacencies: Dictionary[Vector2i, CustomAdjacency]
 
 var a_star_grid: AStarGrid2D
 
@@ -39,6 +46,39 @@ func get_movement_path(from: Vector2i, to: Vector2i) -> Array[Vector2i]:
 	var full_path: Array[Vector2i] = a_star_grid.get_id_path(from , to, true)
 
 	return full_path.slice(1) # The first node in the path is the current tile
+
+func get_traversible_neighbors(coordinates: Vector2i) -> Array[Vector2i]:
+	var neighbors: Array[Vector2i] = []
+
+	for cell in get_prioritized_surrounding_cells(coordinates):
+		if is_tile_movable(cell):
+			neighbors.append(cell)
+
+	return neighbors
+
+func get_prioritized_surrounding_cells(coords: Vector2i) -> Array[Vector2i]:
+	var cells: Array[Vector2i] = []
+
+	cells.append(get_custom_neighbor_or_default(coords, TileSet.CELL_NEIGHBOR_TOP_SIDE))
+	cells.append(get_custom_neighbor_or_default(coords, TileSet.CELL_NEIGHBOR_LEFT_SIDE))
+	cells.append(get_custom_neighbor_or_default(coords, TileSet.CELL_NEIGHBOR_BOTTOM_SIDE))
+	cells.append(get_custom_neighbor_or_default(coords, TileSet.CELL_NEIGHBOR_RIGHT_SIDE))
+
+	return cells
+
+func get_neighbor_in_direction(coords: Vector2i, direction: Vector2i) -> Vector2i:
+	if direction == Vector2i.ZERO:
+		return coords
+
+	return get_custom_neighbor_or_default(coords, DIRECTION_TO_CELL_NEIGHBOR.get(direction))
+
+func get_custom_neighbor_or_default(coords: Vector2i, side: TileSet.CellNeighbor) -> Vector2i:
+	var default_neighbor: Vector2i = maze_layer.get_neighbor_cell(coords, side)
+	var custom_adjacency: CustomAdjacency = custom_adjacencies.get(coords)
+	if custom_adjacency and custom_adjacency.side == side:
+		return custom_adjacency.adjacent_coord
+
+	return default_neighbor
 
 func is_tile_movable(tile_coords: Vector2i) -> bool:
 	var cell_data: TileData = maze_layer.get_cell_tile_data(tile_coords)

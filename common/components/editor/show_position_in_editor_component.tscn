@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhqekbg40ibec"]
+
+[ext_resource type="Script" uid="uid://b7v7mycqdbm0y" path="res://common/components/editor/show_position_in_editor_component.gd" id="1_72h6s"]
+
+[node name="ShowPositionInEditorComponent" type="Node2D"]
+script = ExtResource("1_72h6s")

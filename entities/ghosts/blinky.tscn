@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cwwnp1f3ly45g" path="res://entities/ghosts/assets/redGhost.png" id="1_8uudl"]
 [ext_resource type="Script" uid="uid://bqadg2p5kotr5" path="res://entities/grid_based_entity.gd" id="1_ni7nk"]
 [ext_resource type="PackedScene" uid="uid://bdj3y3ob2xjk1" path="res://common/components/movement/movement_component.tscn" id="2_kgcvt"]
-[ext_resource type="PackedScene" uid="uid://dfleyw4sg4qns" path="res://common/components/movement/pathfinding_movement_direction_component.tscn" id="3_ni7nk"]
+[ext_resource type="PackedScene" uid="uid://wewnbaum7gh6" path="res://common/components/movement/ai/simple_pathfinding_component.tscn" id="4_ni7nk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o1cvx"]
 atlas = ExtResource("1_8uudl")
@@ -80,8 +80,9 @@ frame = 4
 frame_progress = 0.646795
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("direction_component") instance=ExtResource("2_kgcvt")]
-direction_component = NodePath("../PathfindingMovementDirectionComponent")
+direction_component = NodePath("../SimplePathfindingComponent")
 continue_if_no_input = false
 
-[node name="PathfindingMovementDirectionComponent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("3_ni7nk")]
+[node name="SimplePathfindingComponent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("4_ni7nk")]
 movement_component = NodePath("../MovementComponent")
+scatter_target = Vector2i(24, 4)

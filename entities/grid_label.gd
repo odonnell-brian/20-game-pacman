@@ -1,5 +1,5 @@
 @tool
-extends GridBasedEntity
+extends ShowPositionInEditorComponent
 
 @export var text: String
 

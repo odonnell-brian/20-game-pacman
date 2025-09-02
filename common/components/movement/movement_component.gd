@@ -37,7 +37,7 @@ func _process(_delta: float) -> void:
 		try_move(current_direction)
 
 func try_move(direction: Vector2i) -> bool:
-	var target_tile = current_tile + direction
+	var target_tile = Globals.tile_manager.get_neighbor_in_direction(current_tile, direction)
 
 	if move_in_progress or direction == Vector2i.ZERO or not Globals.tile_manager.is_tile_movable(target_tile):
 		return false
@@ -57,7 +57,3 @@ func on_move_tween_complete(target_tile: Vector2i) -> void:
 	current_tile = target_tile
 	move_in_progress = false
 	movement_complete.emit()
-
-func try_target_direction(direction: Vector2i) -> bool:
-	var target_tile = current_tile + direction
-	return direction != Vector2i.ZERO and Globals.tile_manager.is_tile_movable(target_tile)
