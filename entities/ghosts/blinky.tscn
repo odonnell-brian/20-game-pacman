@@ -1,6 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqb5forwluqji"]
+[gd_scene load_steps=14 format=3 uid="uid://dqb5forwluqji"]
 
 [ext_resource type="Texture2D" uid="uid://cwwnp1f3ly45g" path="res://entities/ghosts/assets/redGhost.png" id="1_8uudl"]
+[ext_resource type="Script" uid="uid://bqadg2p5kotr5" path="res://entities/grid_based_entity.gd" id="1_ni7nk"]
+[ext_resource type="PackedScene" uid="uid://bdj3y3ob2xjk1" path="res://common/components/movement/movement_component.tscn" id="2_kgcvt"]
+[ext_resource type="PackedScene" uid="uid://dfleyw4sg4qns" path="res://common/components/movement/pathfinding_movement_direction_component.tscn" id="3_ni7nk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o1cvx"]
 atlas = ExtResource("1_8uudl")
@@ -66,9 +69,19 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Blinky" type="Node2D"]
+[node name="Blinky" type="Node2D" node_paths=PackedStringArray("movement_component")]
+script = ExtResource("1_ni7nk")
+movement_component = NodePath("MovementComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bc2em")
+autoplay = "default"
 frame = 4
 frame_progress = 0.646795
+
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("direction_component") instance=ExtResource("2_kgcvt")]
+direction_component = NodePath("../PathfindingMovementDirectionComponent")
+continue_if_no_input = false
+
+[node name="PathfindingMovementDirectionComponent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("3_ni7nk")]
+movement_component = NodePath("../MovementComponent")

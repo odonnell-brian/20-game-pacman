@@ -10,7 +10,7 @@ extends Node2D
 @export var movement_component: MovementComponent
 
 func _ready() -> void:
-	if movement_component:
+	if not Engine.is_editor_hint() and movement_component:
 		movement_component.current_tile = starting_tile
 
 func _process(_delta: float) -> void:

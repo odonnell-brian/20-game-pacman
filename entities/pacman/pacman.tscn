@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dxai50qtl8etr" path="res://entities/pacman/pacman.gd" id="1_5am7l"]
 [ext_resource type="Texture2D" uid="uid://bu2rqfyrqk7lt" path="res://entities/pacman/assets/PacMan.png" id="1_osiaf"]
-[ext_resource type="PackedScene" uid="uid://bdj3y3ob2xjk1" path="res://common/components/movement_component.tscn" id="3_o0vqk"]
-[ext_resource type="PackedScene" uid="uid://biacfgsbjr843" path="res://common/components/input_movement_direction_component.tscn" id="4_hit3b"]
+[ext_resource type="PackedScene" uid="uid://bdj3y3ob2xjk1" path="res://common/components/movement/movement_component.tscn" id="3_o0vqk"]
+[ext_resource type="PackedScene" uid="uid://biacfgsbjr843" path="res://common/components/movement/input_movement_direction_component.tscn" id="4_hit3b"]
 [ext_resource type="PackedScene" uid="uid://dgin6cgtoea7i" path="res://common/components/sprite_orientation_component.tscn" id="5_hit3b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5am7l"]

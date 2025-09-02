@@ -9,6 +9,7 @@ signal movement_complete()
 
 @export_category("Settings")
 @export var time_to_move: float = 0.25
+@export var continue_if_no_input: bool = true
 
 var starting_tile: Vector2i = Vector2i(1, 1)
 var current_tile: Vector2i
@@ -18,7 +19,7 @@ var next_direction: Vector2i
 
 func _process(_delta: float) -> void:
 	var direction: Vector2i = direction_component.direction
-	if direction != Vector2i.ZERO and direction != current_direction:
+	if direction != Vector2i.ZERO:
 		next_direction = direction
 
 	var moved_next_direction: bool = try_move(next_direction)
@@ -27,8 +28,13 @@ func _process(_delta: float) -> void:
 		next_direction = Vector2i.ZERO
 		return
 
-	# Either there was no input/queued move, or we weren't able to act on it. Try to continue in the current direction
-	try_move(current_direction)
+	# Don't queue input matching the same direction
+	if next_direction == current_direction:
+		next_direction = Vector2i.ZERO
+
+	if continue_if_no_input:
+		# Either there was no input/queued move, or we weren't able to act on it. Try to continue in the current direction
+		try_move(current_direction)
 
 func try_move(direction: Vector2i) -> bool:
 	var target_tile = current_tile + direction
