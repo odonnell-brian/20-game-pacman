@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://0m2eab6xfw3g"]
+
+[ext_resource type="Script" uid="uid://pijh7athshkv" path="res://common/components/movement/ai/move_states/chase/blinky_chase_state.gd" id="1_ljimd"]
+
+[node name="BlinkyChaseState" type="Node2D"]
+script = ExtResource("1_ljimd")

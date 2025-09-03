@@ -87,3 +87,6 @@ func is_tile_movable(tile_coords: Vector2i) -> bool:
 		return not cell_data.get_custom_data(WALL_CUSTOM_DATA_KEY)
 
 	return true
+
+func get_cell_for_position(pos: Vector2) -> Vector2i:
+	return maze_layer.local_to_map(pos - maze_layer.global_position)

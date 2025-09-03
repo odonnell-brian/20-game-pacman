@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnbbaponsqoc6"]
+
+[ext_resource type="Script" uid="uid://duhw0kcaaai7k" path="res://common/components/movement/ai/move_states/ghost_exit_state.gd" id="1_b5qu3"]
+
+[node name="GhostExitState" type="Node2D"]
+script = ExtResource("1_b5qu3")

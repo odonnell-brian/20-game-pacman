@@ -1,9 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://dqb5forwluqji"]
+[gd_scene load_steps=18 format=3 uid="uid://dqb5forwluqji"]
 
 [ext_resource type="Texture2D" uid="uid://cwwnp1f3ly45g" path="res://entities/ghosts/assets/redGhost.png" id="1_8uudl"]
 [ext_resource type="Script" uid="uid://bqadg2p5kotr5" path="res://entities/grid_based_entity.gd" id="1_ni7nk"]
 [ext_resource type="PackedScene" uid="uid://bdj3y3ob2xjk1" path="res://common/components/movement/movement_component.tscn" id="2_kgcvt"]
-[ext_resource type="PackedScene" uid="uid://wewnbaum7gh6" path="res://common/components/movement/ai/simple_pathfinding_component.tscn" id="4_ni7nk"]
+[ext_resource type="PackedScene" uid="uid://wewnbaum7gh6" path="res://common/components/movement/ai/ghost_behavior_component.tscn" id="4_ni7nk"]
+[ext_resource type="PackedScene" uid="uid://dhw1copldk1vx" path="res://common/components/movement/ai/move_states/ghost_spawn_state.tscn" id="5_8rw08"]
+[ext_resource type="PackedScene" uid="uid://0m2eab6xfw3g" path="res://common/components/movement/ai/move_states/chase/blinky_chase_state.tscn" id="5_rfxdw"]
+[ext_resource type="PackedScene" uid="uid://dywlflexae2le" path="res://common/components/movement/ai/move_states/ghost_scatter_move_state.tscn" id="6_lgjc4"]
+[ext_resource type="PackedScene" uid="uid://bnbbaponsqoc6" path="res://common/components/movement/ai/move_states/ghost_exit_state.tscn" id="6_vhblf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o1cvx"]
 atlas = ExtResource("1_8uudl")
@@ -76,13 +80,22 @@ movement_component = NodePath("MovementComponent")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bc2em")
 autoplay = "default"
-frame = 4
-frame_progress = 0.646795
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("direction_component") instance=ExtResource("2_kgcvt")]
-direction_component = NodePath("../SimplePathfindingComponent")
+direction_component = NodePath("../BehaviorComponent")
 continue_if_no_input = false
 
-[node name="SimplePathfindingComponent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("4_ni7nk")]
+[node name="BehaviorComponent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("4_ni7nk")]
 movement_component = NodePath("../MovementComponent")
+scatter_target = Vector2i(24, 4)
+
+[node name="Spawn" parent="BehaviorComponent" node_paths=PackedStringArray("sprite_to_offset") instance=ExtResource("5_8rw08")]
+sprite_to_offset = NodePath("../../AnimatedSprite2D")
+
+[node name="Exit" parent="BehaviorComponent" node_paths=PackedStringArray("sprite_to_offset") instance=ExtResource("6_vhblf")]
+sprite_to_offset = NodePath("../../AnimatedSprite2D")
+
+[node name="Chase" parent="BehaviorComponent" instance=ExtResource("5_rfxdw")]
+
+[node name="Scatter" parent="BehaviorComponent" instance=ExtResource("6_lgjc4")]
 scatter_target = Vector2i(24, 4)

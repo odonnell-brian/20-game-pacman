@@ -1,4 +1,4 @@
 class_name MovementDirectionComponent
-extends Node
+extends Node2D
 
 var direction: Vector2i

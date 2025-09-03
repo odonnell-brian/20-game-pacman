@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bqadg2p5kotr5" path="res://entities/grid_based_entity.gd" id="1_a288j"]
 [ext_resource type="Texture2D" uid="uid://dy6cguog8xwx7" path="res://entities/ghosts/assets/orangeGhost.png" id="1_prure"]
 [ext_resource type="Script" uid="uid://bgrnlae3cpmjk" path="res://common/components/movement/movement_component.gd" id="3_0lp1l"]
-[ext_resource type="PackedScene" uid="uid://wewnbaum7gh6" path="res://common/components/movement/ai/simple_pathfinding_component.tscn" id="4_abrsp"]
+[ext_resource type="PackedScene" uid="uid://wewnbaum7gh6" path="res://common/components/movement/ai/ghost_behavior_component.tscn" id="4_abrsp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c4ffa"]
 atlas = ExtResource("1_prure")

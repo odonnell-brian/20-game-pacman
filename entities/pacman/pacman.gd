@@ -10,3 +10,6 @@ func _ready() -> void:
 
 func get_current_tile() -> Vector2i:
 	return movement_component.current_tile
+
+func get_current_direction() -> Vector2i:
+	return movement_component.current_direction

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dywlflexae2le"]
+
+[ext_resource type="Script" uid="uid://bu7j2mqpe8i55" path="res://common/components/movement/ai/move_states/ghost_scatter_move_state.gd" id="1_br3km"]
+
+[node name="GhostScatterMoveState" type="Node2D"]
+script = ExtResource("1_br3km")
