@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://mfmtmt3b0irg"]
+
+[ext_resource type="Script" uid="uid://brnjap0chuk8v" path="res://common/components/movement/ai/move_states/ghost_frightened_state.gd" id="1_67fol"]
+
+[node name="GhostFrightenedState" type="Node2D"]
+script = ExtResource("1_67fol")

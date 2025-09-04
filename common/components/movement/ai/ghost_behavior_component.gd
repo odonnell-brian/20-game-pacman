@@ -5,6 +5,7 @@ enum MoveState {NONE, SPAWN, EXIT, CHASE, SCATTER, FRIGHTENED}
 
 @export_category("Dependencies")
 @export var movement_component: MovementComponent
+@export var animation_component: DirectionBasedAnimationComponent
 
 @export_category("Settings")
 @export var scatter_target: Vector2i = Vector2i.ZERO
@@ -17,10 +18,10 @@ func _ready() -> void:
 	for child in get_children():
 		if child is GhostMoveState:
 			var move_state: GhostMoveState = child as GhostMoveState
-			move_state.parent = get_parent()
-			move_state.movement_component = movement_component
+			move_state.initialize(get_parent(), movement_component, animation_component)
 			states[move_state.get_associated_state()] = move_state
 			move_state.exit_state.connect(on_state_exit)
+
 	Globals.level_loaded.connect(on_level_loaded)
 
 func _process(_delta: float) -> void:
@@ -37,3 +38,6 @@ func on_state_exit(next_state: MoveState) -> void:
 	states[next_state].enter(current_state)
 	current_state = next_state
 	print("%s moving to state: %s" % [get_parent().name, next_state])
+
+func on_power_pellet() -> void:
+	states[current_state].on_power_pellet()

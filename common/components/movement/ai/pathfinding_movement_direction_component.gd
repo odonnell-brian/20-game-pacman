@@ -24,7 +24,7 @@ func move_to_next_target() -> void:
 		return
 
 	next_target = path.pop_front()
-	direction = next_target - movement_component.current_tile
+	direction = Globals.tile_manager.get_direction_to(movement_component.current_tile, next_target)
 
 	if direction.length() > 1:
 		printerr("Target tile more than one space away. This shouldn't happen.")

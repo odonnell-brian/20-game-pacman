@@ -12,6 +12,13 @@ const DIRECTION_TO_CELL_NEIGHBOR: Dictionary[Vector2i, TileSet.CellNeighbor] = {
 	Vector2i.RIGHT: TileSet.CellNeighbor.CELL_NEIGHBOR_RIGHT_SIDE,
 }
 
+const CELL_NEIGHBOR_TO_DIRECTION: Dictionary[TileSet.CellNeighbor, Vector2i] = {
+	TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_SIDE: Vector2i.UP,
+	TileSet.CellNeighbor.CELL_NEIGHBOR_LEFT_SIDE: Vector2i.LEFT,
+	TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_SIDE: Vector2i.DOWN,
+	TileSet.CellNeighbor.CELL_NEIGHBOR_RIGHT_SIDE: Vector2i.RIGHT,
+}
+
 @export_category("Settings")
 @export var maze_layer: TileMapLayer
 @export var custom_adjacencies: Dictionary[Vector2i, CustomAdjacency]
@@ -80,6 +87,14 @@ func get_custom_neighbor_or_default(coords: Vector2i, side: TileSet.CellNeighbor
 
 	return default_neighbor
 
+func get_direction_to(from: Vector2i, to: Vector2i) -> Vector2i:
+	var custom_adjacency: CustomAdjacency = custom_adjacencies.get(from)
+
+	if custom_adjacency and custom_adjacency.adjacent_coord == to:
+		return CELL_NEIGHBOR_TO_DIRECTION.get(custom_adjacency.side)
+
+	return to - from
+
 func is_tile_movable(tile_coords: Vector2i) -> bool:
 	var cell_data: TileData = maze_layer.get_cell_tile_data(tile_coords)
 
@@ -87,6 +102,3 @@ func is_tile_movable(tile_coords: Vector2i) -> bool:
 		return not cell_data.get_custom_data(WALL_CUSTOM_DATA_KEY)
 
 	return true
-
-func get_cell_for_position(pos: Vector2) -> Vector2i:
-	return maze_layer.local_to_map(pos - maze_layer.global_position)

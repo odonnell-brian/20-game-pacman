@@ -13,4 +13,7 @@ func get_completion_timeout() -> float:
 	return 7.0
 
 func get_timeout_state() -> GhostBehaviorComponent.MoveState:
+	if frightened:
+		return GhostBehaviorComponent.MoveState.FRIGHTENED
+
 	return GhostBehaviorComponent.MoveState.CHASE

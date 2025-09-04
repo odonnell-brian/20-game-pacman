@@ -12,8 +12,8 @@ func get_associated_state() -> GhostBehaviorComponent.MoveState:
 func enter(_previous_state: GhostBehaviorComponent.MoveState = GhostBehaviorComponent.MoveState.NONE) -> void:
 	get_tree().create_timer(TIME_UNTIL_EXIT).timeout.connect(exit_state.emit.bind(GhostBehaviorComponent.MoveState.EXIT))
 
-	#create_tween().tween_property(sprite_to_offset, "offset:x", SPRITE_OFFSET, 0.1)
 	sprite_to_offset.offset.x = SPRITE_OFFSET
+	play_animation(MOVE_ANIMATION_PREFIX, Vector2i.LEFT)
 
 func exit() -> void:
 	pass

@@ -1,13 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://dqb5forwluqji"]
+[gd_scene load_steps=37 format=3 uid="uid://dqb5forwluqji"]
 
 [ext_resource type="Texture2D" uid="uid://cwwnp1f3ly45g" path="res://entities/ghosts/assets/redGhost.png" id="1_8uudl"]
 [ext_resource type="Script" uid="uid://bqadg2p5kotr5" path="res://entities/grid_based_entity.gd" id="1_ni7nk"]
 [ext_resource type="PackedScene" uid="uid://bdj3y3ob2xjk1" path="res://common/components/movement/movement_component.tscn" id="2_kgcvt"]
+[ext_resource type="Texture2D" uid="uid://wajbqq8nucsb" path="res://entities/assets/sprites.png" id="3_u2n6u"]
 [ext_resource type="PackedScene" uid="uid://wewnbaum7gh6" path="res://common/components/movement/ai/ghost_behavior_component.tscn" id="4_ni7nk"]
 [ext_resource type="PackedScene" uid="uid://dhw1copldk1vx" path="res://common/components/movement/ai/move_states/ghost_spawn_state.tscn" id="5_8rw08"]
+[ext_resource type="PackedScene" uid="uid://bq64fxqg3630h" path="res://common/components/effects/direction_based_animation_component.tscn" id="5_bc2em"]
 [ext_resource type="PackedScene" uid="uid://0m2eab6xfw3g" path="res://common/components/movement/ai/move_states/chase/blinky_chase_state.tscn" id="5_rfxdw"]
 [ext_resource type="PackedScene" uid="uid://dywlflexae2le" path="res://common/components/movement/ai/move_states/ghost_scatter_move_state.tscn" id="6_lgjc4"]
 [ext_resource type="PackedScene" uid="uid://bnbbaponsqoc6" path="res://common/components/movement/ai/move_states/ghost_exit_state.tscn" id="6_vhblf"]
+[ext_resource type="PackedScene" uid="uid://mfmtmt3b0irg" path="res://common/components/movement/ai/move_states/ghost_frightened_state.tscn" id="11_vuf5s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o1cvx"]
 atlas = ExtResource("1_8uudl")
@@ -41,6 +44,70 @@ region = Rect2(96, 0, 16, 16)
 atlas = ExtResource("1_8uudl")
 region = Rect2(112, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wwif"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(179, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kloce"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(147, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onxrp"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(131, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwm4r"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(163, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83lm5"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(131, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7pe5"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(147, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4i7g"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(163, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tedn"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(179, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc2em"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(99, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuf5s"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(115, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy8xr"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(35, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqku7"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(51, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipr3y"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(3, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbou7"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(19, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gdjm"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(67, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h826i"]
+atlas = ExtResource("3_u2n6u")
+region = Rect2(83, 64, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_bc2em"]
 animations = [{
 "frames": [{
@@ -71,6 +138,99 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wwif")
+}],
+"loop": false,
+"name": &"eyes_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kloce")
+}],
+"loop": false,
+"name": &"eyes_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onxrp")
+}],
+"loop": false,
+"name": &"eyes_right",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwm4r")
+}],
+"loop": false,
+"name": &"eyes_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83lm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7pe5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4i7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tedn")
+}],
+"loop": true,
+"name": &"frightened",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bc2em")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vuf5s")
+}],
+"loop": true,
+"name": &"move_down",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy8xr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqku7")
+}],
+"loop": true,
+"name": &"move_left",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipr3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbou7")
+}],
+"loop": true,
+"name": &"move_right",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gdjm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h826i")
+}],
+"loop": true,
+"name": &"move_up",
+"speed": 10.0
 }]
 
 [node name="Blinky" type="Node2D" node_paths=PackedStringArray("movement_component")]
@@ -79,14 +239,19 @@ movement_component = NodePath("MovementComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bc2em")
+animation = &"frightened"
 autoplay = "default"
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("direction_component") instance=ExtResource("2_kgcvt")]
 direction_component = NodePath("../BehaviorComponent")
 continue_if_no_input = false
 
-[node name="BehaviorComponent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("4_ni7nk")]
+[node name="DirectionBasedAnimationComponent" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("5_bc2em")]
+animated_sprite = NodePath("../AnimatedSprite2D")
+
+[node name="BehaviorComponent" parent="." node_paths=PackedStringArray("movement_component", "animation_component") instance=ExtResource("4_ni7nk")]
 movement_component = NodePath("../MovementComponent")
+animation_component = NodePath("../DirectionBasedAnimationComponent")
 scatter_target = Vector2i(24, 4)
 
 [node name="Spawn" parent="BehaviorComponent" node_paths=PackedStringArray("sprite_to_offset") instance=ExtResource("5_8rw08")]
@@ -99,3 +264,5 @@ sprite_to_offset = NodePath("../../AnimatedSprite2D")
 
 [node name="Scatter" parent="BehaviorComponent" instance=ExtResource("6_lgjc4")]
 scatter_target = Vector2i(24, 4)
+
+[node name="Frightened" parent="BehaviorComponent" instance=ExtResource("11_vuf5s")]
