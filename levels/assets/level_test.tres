@@ -20,7 +20,7 @@ tile_data = PackedInt32Array(0, 1, 10, 65536, 1, 11, 65537, 65537, 11)
 texture = ExtResource("1_07krk")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
-0:0/0/custom_data_0 = true
+0:0/0/custom_data_1 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ih1o"]
 texture = ExtResource("2_4gl6m")
@@ -447,6 +447,8 @@ texture_region_size = Vector2i(8, 8)
 tile_size = Vector2i(8, 8)
 custom_data_layer_0/name = "wall"
 custom_data_layer_0/type = 1
+custom_data_layer_1/name = "door"
+custom_data_layer_1/type = 1
 sources/1 = SubResource("TileSetAtlasSource_6ih1o")
 sources/2 = SubResource("TileSetAtlasSource_56xti")
 sources/0 = SubResource("TileSetAtlasSource_4gl6m")

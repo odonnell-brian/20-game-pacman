@@ -4,6 +4,7 @@ extends Node2D
 const TILE_SIZE := Vector2i(8, 8)
 const TOP_LEFT_GLOBAL_POSITION := Vector2(208, 36)
 const WALL_CUSTOM_DATA_KEY: String = "wall"
+const DOOR_CUSTOM_DATA_KEY: String = "door"
 
 const DIRECTION_TO_CELL_NEIGHBOR: Dictionary[Vector2i, TileSet.CellNeighbor] = {
 	Vector2i.UP: TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_SIDE,
@@ -54,11 +55,11 @@ func get_movement_path(from: Vector2i, to: Vector2i) -> Array[Vector2i]:
 
 	return full_path.slice(1) # The first node in the path is the current tile
 
-func get_traversible_neighbors(coordinates: Vector2i) -> Array[Vector2i]:
+func get_traversible_neighbors(coordinates: Vector2i, ignore_doors: bool = false) -> Array[Vector2i]:
 	var neighbors: Array[Vector2i] = []
 
 	for cell in get_prioritized_surrounding_cells(coordinates):
-		if is_tile_movable(cell):
+		if is_tile_movable(cell, ignore_doors):
 			neighbors.append(cell)
 
 	return neighbors
@@ -95,10 +96,13 @@ func get_direction_to(from: Vector2i, to: Vector2i) -> Vector2i:
 
 	return to - from
 
-func is_tile_movable(tile_coords: Vector2i) -> bool:
+func is_tile_movable(tile_coords: Vector2i, ignore_doors: bool = false) -> bool:
 	var cell_data: TileData = maze_layer.get_cell_tile_data(tile_coords)
 
 	if cell_data:
-		return not cell_data.get_custom_data(WALL_CUSTOM_DATA_KEY)
+		var is_wall = cell_data.get_custom_data(WALL_CUSTOM_DATA_KEY)
+		var is_door = cell_data.get_custom_data(DOOR_CUSTOM_DATA_KEY)
+
+		return (not is_wall and not is_door) or (is_door and ignore_doors)
 
 	return true

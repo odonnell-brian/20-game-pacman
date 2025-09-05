@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb8cexvsh364n"]
+
+[ext_resource type="Script" uid="uid://uwf1e1pfcpf7" path="res://common/components/movement/ai/move_states/ghost_respawn_state.gd" id="1_h3syj"]
+
+[node name="GhostRespawnState" type="Node2D"]
+script = ExtResource("1_h3syj")

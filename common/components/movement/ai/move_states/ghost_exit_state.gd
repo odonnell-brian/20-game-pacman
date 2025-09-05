@@ -10,11 +10,13 @@ const TILE_MOVE_DURATION: float = 0.5
 func get_associated_state() -> GhostBehaviorComponent.MoveState:
 	return GhostBehaviorComponent.MoveState.EXIT
 
-func enter(previous_state: GhostBehaviorComponent.MoveState = GhostBehaviorComponent.MoveState.NONE) -> void:
+func enter(_previous_state: GhostBehaviorComponent.MoveState = GhostBehaviorComponent.MoveState.NONE) -> void:
+	active = true
 	move_to_exit(EXIT_TILE)
 
 func exit() -> void:
-	pass
+	active = false
+	exit_state.emit(GhostBehaviorComponent.MoveState.SCATTER)
 
 func move_to_exit(closest_exit_tile: Vector2i) -> void:
 	var position_diff: Vector2i = closest_exit_tile - movement_component.current_tile
@@ -30,7 +32,7 @@ func move_to_exit(closest_exit_tile: Vector2i) -> void:
 
 	tween.tween_property(sprite_to_offset, "offset:x", 0.0, movement_component.time_to_move / 2).from_current()
 	tween.tween_callback(func(): movement_component.current_tile = closest_exit_tile)
-	tween.finished.connect(exit_state.emit.bind(GhostBehaviorComponent.MoveState.SCATTER))
+	tween.finished.connect(exit)
 
 func tween_position(tween: Tween, pos_property: String, final_position: float, pos_diff: int, direction_multiplier: Vector2i) -> void:
 	var pos_direction: int = pos_diff / abs(pos_diff)

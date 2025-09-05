@@ -1,7 +1,7 @@
 class_name GhostBehaviorComponent
 extends MovementDirectionComponent
 
-enum MoveState {NONE, SPAWN, EXIT, CHASE, SCATTER, FRIGHTENED}
+enum MoveState {NONE, SPAWN, EXIT, CHASE, SCATTER, FRIGHTENED, RESPAWN}
 
 @export_category("Dependencies")
 @export var movement_component: MovementComponent
@@ -21,8 +21,11 @@ func _ready() -> void:
 			move_state.initialize(get_parent(), movement_component, animation_component)
 			states[move_state.get_associated_state()] = move_state
 			move_state.exit_state.connect(on_state_exit)
+			move_state.exit_frightened.connect(on_power_pellet_timeout)
 
 	Globals.level_loaded.connect(on_level_loaded)
+	Globals.power_pellet_consumed.connect(on_power_pellet)
+	Globals.power_pellet_timeout.connect(on_power_pellet_timeout)
 
 func _process(_delta: float) -> void:
 	if states[current_state]:
@@ -40,4 +43,9 @@ func on_state_exit(next_state: MoveState) -> void:
 	print("%s moving to state: %s" % [get_parent().name, next_state])
 
 func on_power_pellet() -> void:
-	states[current_state].on_power_pellet()
+	for state in states.values():
+		state.on_power_pellet()
+
+func on_power_pellet_timeout() -> void:
+	for state in states.values():
+		state.on_power_pellet_timeout()

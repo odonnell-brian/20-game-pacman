@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dqb5forwluqji"]
+[gd_scene load_steps=38 format=3 uid="uid://dqb5forwluqji"]
 
 [ext_resource type="Texture2D" uid="uid://cwwnp1f3ly45g" path="res://entities/ghosts/assets/redGhost.png" id="1_8uudl"]
 [ext_resource type="Script" uid="uid://bqadg2p5kotr5" path="res://entities/grid_based_entity.gd" id="1_ni7nk"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dywlflexae2le" path="res://common/components/movement/ai/move_states/ghost_scatter_move_state.tscn" id="6_lgjc4"]
 [ext_resource type="PackedScene" uid="uid://bnbbaponsqoc6" path="res://common/components/movement/ai/move_states/ghost_exit_state.tscn" id="6_vhblf"]
 [ext_resource type="PackedScene" uid="uid://mfmtmt3b0irg" path="res://common/components/movement/ai/move_states/ghost_frightened_state.tscn" id="11_vuf5s"]
+[ext_resource type="PackedScene" uid="uid://bb8cexvsh364n" path="res://common/components/movement/ai/move_states/ghost_respawn_state.tscn" id="12_fy8xr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o1cvx"]
 atlas = ExtResource("1_8uudl")
@@ -239,8 +240,8 @@ movement_component = NodePath("MovementComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bc2em")
-animation = &"frightened"
-autoplay = "default"
+animation = &"move_left"
+autoplay = "move_left"
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("direction_component") instance=ExtResource("2_kgcvt")]
 direction_component = NodePath("../BehaviorComponent")
@@ -266,3 +267,5 @@ sprite_to_offset = NodePath("../../AnimatedSprite2D")
 scatter_target = Vector2i(24, 4)
 
 [node name="Frightened" parent="BehaviorComponent" instance=ExtResource("11_vuf5s")]
+
+[node name="Respawn" parent="BehaviorComponent" instance=ExtResource("12_fy8xr")]

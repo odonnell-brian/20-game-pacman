@@ -513,10 +513,10 @@ position_to_show = Vector2i(-1, 32)
 update_parent_starting_tile = null
 
 [node name="Blinky" parent="." instance=ExtResource("5_5yd65")]
-position = Vector2(324, 144)
-starting_tile = Vector2i(14, 13)
+position = Vector2(340, 168)
+starting_tile = Vector2i(16, 16)
 
 [node name="ShowPositionInEditorComponent" parent="Blinky" node_paths=PackedStringArray("node_to_change") instance=ExtResource("6_sop0g")]
 node_to_change = NodePath("..")
-position_to_show = Vector2i(14, 13)
+position_to_show = Vector2i(16, 16)
 update_parent_starting_tile = true

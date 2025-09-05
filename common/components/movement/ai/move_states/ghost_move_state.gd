@@ -7,16 +7,16 @@ const FRIGHTENED_ANIMATION_NAME: String = "frightened"
 @warning_ignore("unused_signal")
 signal exit_state(next_state: GhostBehaviorComponent.MoveState)
 
+@warning_ignore("unused_signal")
+signal exit_frightened()
+
 var parent: Node2D
 var movement_component: MovementComponent
 var animation_component: DirectionBasedAnimationComponent
 var direction: Vector2i
 var frightened: bool = false
 var last_requested_animation: AnimationInfo = AnimationInfo.new()
-
-func _ready() -> void:
-	Globals.power_pellet_consumed.connect(on_power_pellet)
-	Globals.power_pellet_timeout.connect(on_power_pellet_timeout)
+var active: bool = false
 
 @warning_ignore("shadowed_variable")
 func initialize(parent: Node2D, movement_component: MovementComponent, animation_component: DirectionBasedAnimationComponent) -> void:
@@ -36,13 +36,20 @@ func exit() -> void:
 
 func on_power_pellet() -> void:
 	frightened = true
-	animation_component.play_animation_for_direction(FRIGHTENED_ANIMATION_NAME, Vector2i.ZERO)
+
+	if active:
+		animation_component.play_animation_for_direction(FRIGHTENED_ANIMATION_NAME, Vector2i.ZERO)
 
 func on_power_pellet_timeout() -> void:
 	frightened = false
-	animation_component.play_animation_for_direction(last_requested_animation.anim_name, last_requested_animation.move_dir)
+
+	if active:
+		animation_component.play_animation_for_direction(last_requested_animation.anim_name, last_requested_animation.move_dir)
 
 func play_animation(anim_name: String, move_dir: Vector2i) -> void:
+	if not active:
+		return
+
 	last_requested_animation.anim_name = anim_name
 	last_requested_animation.move_dir = move_dir
 	if frightened:
