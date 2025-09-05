@@ -14,3 +14,5 @@ signal power_pellet_timeout()
 
 var tile_manager: TileManager
 var pacman: Pacman
+
+var ghosts: Dictionary[Ghost.GhostNames, Ghost] = {}

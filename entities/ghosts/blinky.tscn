@@ -1,7 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://dqb5forwluqji"]
+[gd_scene load_steps=29 format=3 uid="uid://dqb5forwluqji"]
 
-[ext_resource type="Texture2D" uid="uid://cwwnp1f3ly45g" path="res://entities/ghosts/assets/redGhost.png" id="1_8uudl"]
-[ext_resource type="Script" uid="uid://bqadg2p5kotr5" path="res://entities/grid_based_entity.gd" id="1_ni7nk"]
+[ext_resource type="Script" uid="uid://dumtgniih6m1c" path="res://entities/ghosts/ghost.gd" id="1_vuf5s"]
 [ext_resource type="PackedScene" uid="uid://bdj3y3ob2xjk1" path="res://common/components/movement/movement_component.tscn" id="2_kgcvt"]
 [ext_resource type="Texture2D" uid="uid://wajbqq8nucsb" path="res://entities/assets/sprites.png" id="3_u2n6u"]
 [ext_resource type="PackedScene" uid="uid://wewnbaum7gh6" path="res://common/components/movement/ai/ghost_behavior_component.tscn" id="4_ni7nk"]
@@ -12,38 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://bnbbaponsqoc6" path="res://common/components/movement/ai/move_states/ghost_exit_state.tscn" id="6_vhblf"]
 [ext_resource type="PackedScene" uid="uid://mfmtmt3b0irg" path="res://common/components/movement/ai/move_states/ghost_frightened_state.tscn" id="11_vuf5s"]
 [ext_resource type="PackedScene" uid="uid://bb8cexvsh364n" path="res://common/components/movement/ai/move_states/ghost_respawn_state.tscn" id="12_fy8xr"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o1cvx"]
-atlas = ExtResource("1_8uudl")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kgcvt"]
-atlas = ExtResource("1_8uudl")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ni7nk"]
-atlas = ExtResource("1_8uudl")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rfxdw"]
-atlas = ExtResource("1_8uudl")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lgjc4"]
-atlas = ExtResource("1_8uudl")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8rw08"]
-atlas = ExtResource("1_8uudl")
-region = Rect2(80, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vhblf"]
-atlas = ExtResource("1_8uudl")
-region = Rect2(96, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u2n6u"]
-atlas = ExtResource("1_8uudl")
-region = Rect2(112, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0wwif"]
 atlas = ExtResource("3_u2n6u")
@@ -111,35 +78,6 @@ region = Rect2(83, 64, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bc2em"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o1cvx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kgcvt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ni7nk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rfxdw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lgjc4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8rw08")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vhblf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u2n6u")
-}],
-"loop": true,
-"name": &"default",
-"speed": 15.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0wwif")
@@ -235,7 +173,8 @@ animations = [{
 }]
 
 [node name="Blinky" type="Node2D" node_paths=PackedStringArray("movement_component")]
-script = ExtResource("1_ni7nk")
+script = ExtResource("1_vuf5s")
+starting_tile = Vector2i(14, 13)
 movement_component = NodePath("MovementComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

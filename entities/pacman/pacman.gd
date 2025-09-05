@@ -13,9 +13,3 @@ func _unhandled_input(_event: InputEvent) -> void:
 		Globals.power_pellet_consumed.emit()
 	elif Input.is_action_just_pressed("ui_up"):
 		Globals.power_pellet_timeout.emit()
-
-func get_current_tile() -> Vector2i:
-	return movement_component.current_tile
-
-func get_current_direction() -> Vector2i:
-	return movement_component.current_direction

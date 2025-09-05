@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bsail3omiimph"]
 
-[ext_resource type="Script" uid="uid://byfqcl73i2vy5" path="res://entities/grid_label.gd" id="1_k4gje"]
+[ext_resource type="Script" uid="uid://byfqcl73i2vy5" path="res://entities/debug/grid_label.gd" id="1_k4gje"]
 
 [node name="GridLabel" type="Node2D"]
 scale = Vector2(0.35, 0.35)
