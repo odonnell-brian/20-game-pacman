@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddueam2061s86"]
+
+[ext_resource type="Script" uid="uid://daxugm057xinc" path="res://common/components/mechanics/pellet_consumer_component.gd" id="1_yepws"]
+
+[node name="PelletConsumerComponent" type="Area2D"]
+script = ExtResource("1_yepws")

@@ -19,8 +19,8 @@ func get_associated_state() -> GhostBehaviorComponent.MoveState:
 func get_completion_timeout() -> float:
 	return 20.0
 
-func render_target_debug(target: Vector2i, color_hex: int) -> void:
-	target_sprite.global_position =TileManager.get_tile_center_point(target)
-	target_sprite.modulate = Color.hex(color_hex)
-	target_sprite.modulate.a = 1.0
-	target_sprite.name = "%sTarget" % movement_component.get_parent().name
+func render_target_debug(target: Vector2i, color_hex: int, sprite: Sprite2D = target_sprite) -> void:
+	sprite.global_position =TileManager.get_tile_center_point(target)
+	sprite.modulate = Color.hex(color_hex)
+	sprite.modulate.a = 1.0
+	sprite.name = "%sTarget" % movement_component.get_parent().name

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://rch3fjfqqxb1"]
+
+[ext_resource type="Texture2D" uid="uid://cgh7t8076gdm6" path="res://entities/pellet/assets/power_pellet.png" id="1_cvhey"]
+[ext_resource type="PackedScene" uid="uid://dsw7mub1i2yi6" path="res://common/components/mechanics/pellet_component.tscn" id="2_4jmnp"]
+[ext_resource type="Script" uid="uid://cd334gneme1s0" path="res://common/components/mechanics/power_pellet_component.gd" id="3_4jmnp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spyu0"]
+size = Vector2(8, 8)
+
+[node name="PowerPellet" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cvhey")
+
+[node name="PelletComponent" parent="." instance=ExtResource("2_4jmnp")]
+script = ExtResource("3_4jmnp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PelletComponent"]
+shape = SubResource("RectangleShape2D_spyu0")

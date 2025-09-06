@@ -7,6 +7,7 @@ extends Node2D
 @export var position_to_show: Vector2i
 @export var update_parent_starting_tile: bool = false
 @export var disable: bool = false
+@export var snap_to_nearest_tile: bool = false
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint() and not disable:

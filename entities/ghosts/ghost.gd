@@ -6,5 +6,6 @@ enum GhostNames {BLINKY, PINKY, INKY, CLYDE}
 @export_category("Settings")
 @export var ghost_name: GhostNames
 
-func _init() -> void:
+func _ready() -> void:
+	super()
 	Globals.ghosts[ghost_name] = self

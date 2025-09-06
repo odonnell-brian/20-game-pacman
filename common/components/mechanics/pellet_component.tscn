@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsw7mub1i2yi6"]
+
+[ext_resource type="Script" uid="uid://v8jplwqw23ws" path="res://common/components/mechanics/pellet_component.gd" id="1_emvft"]
+
+[node name="PelletComponent" type="Area2D"]
+script = ExtResource("1_emvft")

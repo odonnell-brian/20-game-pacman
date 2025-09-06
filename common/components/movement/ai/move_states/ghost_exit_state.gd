@@ -16,7 +16,7 @@ func enter(_previous_state: GhostBehaviorComponent.MoveState = GhostBehaviorComp
 
 func exit() -> void:
 	active = false
-	exit_state.emit(GhostBehaviorComponent.MoveState.SCATTER)
+	exit_state.emit(GhostBehaviorComponent.MoveState.CHASE)
 
 func move_to_exit(closest_exit_tile: Vector2i) -> void:
 	var position_diff: Vector2i = closest_exit_tile - movement_component.current_tile

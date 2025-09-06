@@ -197,7 +197,7 @@ scatter_target = Vector2i(24, 4)
 
 [node name="Spawn" parent="BehaviorComponent" node_paths=PackedStringArray("sprite_to_offset") instance=ExtResource("6_0xs2q")]
 sprite_to_offset = NodePath("../../AnimatedSprite2D")
-time_to_exit = 20.0
+time_to_exit = 30.0
 
 [node name="Exit" parent="BehaviorComponent" node_paths=PackedStringArray("sprite_to_offset") instance=ExtResource("7_mifyn")]
 sprite_to_offset = NodePath("../../AnimatedSprite2D")

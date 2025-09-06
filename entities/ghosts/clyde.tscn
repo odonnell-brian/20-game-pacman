@@ -204,6 +204,8 @@ sprite_to_offset = NodePath("../../AnimatedSprite2D")
 
 [node name="Chase" parent="BehaviorComponent" instance=ExtResource("8_64g60")]
 script = ExtResource("9_1d1ad")
+distance_radius = 8.0
+scatter_target = Vector2i(3, 29)
 
 [node name="Scatter" parent="BehaviorComponent" instance=ExtResource("9_vtc88")]
 scatter_target = Vector2i(3, 29)

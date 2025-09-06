@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://c17f65j7n8m0n"]
+[gd_scene load_steps=17 format=3 uid="uid://c17f65j7n8m0n"]
 
 [ext_resource type="Script" uid="uid://dxai50qtl8etr" path="res://entities/pacman/pacman.gd" id="1_5am7l"]
 [ext_resource type="Texture2D" uid="uid://bu2rqfyrqk7lt" path="res://entities/pacman/assets/PacMan.png" id="1_osiaf"]
 [ext_resource type="PackedScene" uid="uid://bdj3y3ob2xjk1" path="res://common/components/movement/movement_component.tscn" id="3_o0vqk"]
 [ext_resource type="PackedScene" uid="uid://biacfgsbjr843" path="res://common/components/movement/input_movement_direction_component.tscn" id="4_hit3b"]
 [ext_resource type="PackedScene" uid="uid://dgin6cgtoea7i" path="res://common/components/sprite_orientation_component.tscn" id="5_hit3b"]
+[ext_resource type="PackedScene" uid="uid://ddueam2061s86" path="res://common/components/mechanics/pellet_consumer_component.tscn" id="6_p77o7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5am7l"]
 atlas = ExtResource("1_osiaf")
@@ -70,6 +71,9 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hpggm"]
+radius = 5.09902
+
 [node name="Pacman" type="Node2D" node_paths=PackedStringArray("movement_component")]
 script = ExtResource("1_5am7l")
 movement_component = NodePath("MovementComponent")
@@ -88,3 +92,8 @@ time_to_move = 0.2
 [node name="SpriteOrientationComponent" parent="." node_paths=PackedStringArray("sprite", "movement_component") instance=ExtResource("5_hit3b")]
 sprite = NodePath("../AnimatedSprite2D")
 movement_component = NodePath("../MovementComponent")
+
+[node name="PelletConsumerComponent" parent="." instance=ExtResource("6_p77o7")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PelletConsumerComponent"]
+shape = SubResource("CircleShape2D_hpggm")
